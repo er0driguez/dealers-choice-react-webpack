@@ -38,6 +38,15 @@ app.use('/dist', express.static(path.join(__dirname, 'dist')));
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
 
+app.get('/api/books', async(req, res, next) => {
+    try {
+        res.send(await Book.findAll());
+    }
+    catch(err) {
+        next(err);
+    }
+});
+
 const port = process.env.PORT || 8080;
 
 app.listen(port, () => console.log(`listening on port ${port}`));
