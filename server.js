@@ -1,5 +1,7 @@
+/*
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/sci_fi_library');
+
 
 const Book = sequelize.define('book', {
     id: {
@@ -19,8 +21,26 @@ const Author = sequelize.define('author', {
     }
 });
 
+Book.generateRandom = function() {
+    return this.create({ title: `Book ${ Math.floor(Math.random()  * 1000)}` });
+}
+
 Book.belongsTo(Author);
 Author.hasMany(Book);
+*/
+const express = require('express');
+const app = express();
+const path = require('path');
+
+const { sequelize, Book, Author } = require('./db/db');
+
+app.use('/dist', express.static(path.join(__dirname, 'dist')));
+
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => console.log(`listening on port ${port}`));
 
 const setup = async() => {
     try {

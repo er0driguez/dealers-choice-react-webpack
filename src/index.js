@@ -1,4 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-ReactDOM.render(<hr />, document.querySelector('#root'));
+class App extends React.Component {
+    constructor() {
+        super();
+        console.log('in constructor!')
+    }
+    
+    render() {
+        return (
+            <div>
+                <h1> Sci-Fi Library </h1>
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(<App />, document.querySelector('#root'));
