@@ -16,18 +16,18 @@ app.get('/api/books', async(req, res, next) => {
         next(err);
     }
 });
-/*
+
 app.delete('/api/books/:id', async(req, res, next) => {
     try {
         const book = await Book.findByPk(req.params.id);
-        await Book.destroy();
+        await book.destroy();
         res.sendStatus(204);
     }
     catch(err) {
         next(err);
     }
 });
-*/
+
 
 app.post('/api/books', async(req, res, next) => {
     try {
